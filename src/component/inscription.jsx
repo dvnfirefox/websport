@@ -14,7 +14,12 @@ const Logging = ({ logingClick }) => {
         setLoading(true);
 
         if (!user.nom || !password || !password2) {
-            setError("Please fill in all fields");
+            setError("remplir tous les champs");
+            setLoading(false);
+            return;
+        }
+        if (password !== password2) {
+            setError("les mots de passe ne sont pas identique");
             setLoading(false);
             return;
         }
