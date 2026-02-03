@@ -46,4 +46,12 @@ export default class ApiService {
     }
     static async postCreezEquipe(nom,federation, categorie, utilisateur) {
         return await this.post("/equipe/creez", {nom, federation, categorie, utilisateur})
-    }}
+    }
+
+    static async postInscription(nom, password) {
+        const admin = "none";
+        return await this.post("/utilisateur/creez", {nom, password, admin});
+    }
+
+
+}

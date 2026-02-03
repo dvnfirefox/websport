@@ -11,7 +11,6 @@ const Navbar = ({ user, onNavigate, onLogout }) => {
     const buttonUtilisateur = [
         { label: "Tournois", key: "tournois", onClick: onNavigate },
         { label: "Résultats", key: "resultats", onClick: onNavigate },
-        { label: "Inscriptions", key: "inscriptions", onClick: onNavigate },
         { label: "Joueur", key: "joueur", onClick: onNavigate },
         { label: "Historique", key: "historique", onClick: onNavigate },
         { label: "Classement", key: "classement", onClick: onNavigate },

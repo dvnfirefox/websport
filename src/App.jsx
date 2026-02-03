@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./component/NavBar.jsx";
 import Logging from "./component/logging.jsx";
+import Inscription from "./component/Inscription.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,7 +26,7 @@ function App() {
       content = <h2>Résultats</h2>;
       break;
     case "inscriptions":
-      content = <h2>Inscriptions</h2>;
+      content = <Inscription/>;
       break;
     case "joueur":
       content = <h2>Joueur</h2>;
