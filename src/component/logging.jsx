@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ApiService from "../service/HttpService.jsx";
 
-const Logging = ({ logingClick }) => {
+const Logging = ({ UserUpdate }) => {
     const [user, setUser] = useState({ nom: "", equipe: 0 });
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -28,7 +28,7 @@ const Logging = ({ logingClick }) => {
                     equipeNom: response.equipeNom ?? "",
                 };
                 setUser(loggedUser);
-                logingClick(loggedUser); // send to App
+                UserUpdate(loggedUser); // send to App
             } else {
                 setError("Invalid credentials");
             }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./component/NavBar.jsx";
 import Logging from "./component/logging.jsx";
 import CreezUtilisateur from "./component/CreezUtilisateur.jsx";
+import CreezEquipe from "./component/creezEquipe.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -9,7 +10,7 @@ function App() {
 
   const navBarClick = (page) => setNavBar(page);
   const onLogout = () => setUser(null);
-  const logingClick = (userData) => {
+  const userUpdate = (userData) => {
     setUser(userData);
     setNavBar("tournois");
   }
@@ -17,7 +18,7 @@ function App() {
   let content;
   switch (navBar) {
     case "connection":
-      content = <Logging logingClick={logingClick} />;
+      content = <Logging UserUpdate={userUpdate} />;
       break;
     case "tournois":
       content = <h2>Tournois</h2>;
@@ -36,6 +37,9 @@ function App() {
       break;
     case "classement":
       content = <h2>Classement</h2>;
+      break;
+    case "creezEquipe":
+      content = <CreezEquipe user={user} UserUpdate={userUpdate}  />;
       break;
     default:
       content = <h2>Page non trouvée</h2>;
