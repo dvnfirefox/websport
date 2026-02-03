@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ApiService from "../service/HttpService.jsx";
 
-const Inscription = () => {
+const CreezUtilisateur = () => {
     const [nom, setNom] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
@@ -29,7 +29,7 @@ const Inscription = () => {
             const response = await ApiService.postInscription(nom, password);
 
             if (response.status) {
-                setError("Inscription réussie");
+                setError("CreezUtilisateur réussie");
             } else {
                 setError("Échec de la création");
             }
@@ -81,4 +81,4 @@ const Inscription = () => {
     );
 };
 
-export default Inscription;
+export default CreezUtilisateur;
