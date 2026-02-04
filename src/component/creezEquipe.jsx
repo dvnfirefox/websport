@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ApiService from "../service/HttpService.jsx";
 
-const CreezEquipe = ({ user, UserUpdate }) => {
+const CreezEquipe = ({ user, equipeUpdate }) => {
     const [nom, setNom] = useState("");
     const [federation, setFederation] = useState("");
     const [categorie, setCategorie] = useState("Moustique");
@@ -43,14 +43,14 @@ const CreezEquipe = ({ user, UserUpdate }) => {
                 user.nom
             );
 
-            if (response) {
+            if (response.resultat) {
                 const updatedUser = {
                     ...user,
                     equipe: response.equipe ?? 0,
                     equipeNom: response.equipeNom ?? ""
                 };
 
-                UserUpdate(updatedUser); // update App state
+                equipeUpdate(updatedUser); // update App state
             } else {
                 setError("Échec de la création de l’équipe");
             }

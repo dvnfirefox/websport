@@ -3,14 +3,22 @@ import Navbar from "./component/NavBar.jsx";
 import Logging from "./component/logging.jsx";
 import CreezUtilisateur from "./component/CreezUtilisateur.jsx";
 import CreezEquipe from "./component/creezEquipe.jsx";
+import GestionJoueur from "./component/joueur/GestionJoueur.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
   const [navBar, setNavBar] = useState("connection");
 
   const navBarClick = (page) => setNavBar(page);
-  const onLogout = () => setUser(null);
+  const onLogout = () => {
+    setUser(null)
+    setNavBar("connection");
+  };
   const userUpdate = (userData) => {
+    setUser(userData);
+    setNavBar("tournois");
+  }
+  const equipeUpdate = (userData) => {
     setUser(userData);
     setNavBar("tournois");
   }
@@ -30,7 +38,7 @@ function App() {
       content = <CreezUtilisateur/>;
       break;
     case "joueur":
-      content = <h2>Joueur</h2>;
+      content = <GestionJoueur user={user}/>;
       break;
     case "historique":
       content = <h2>Historique</h2>;
@@ -39,7 +47,7 @@ function App() {
       content = <h2>Classement</h2>;
       break;
     case "creezEquipe":
-      content = <CreezEquipe user={user} UserUpdate={userUpdate}  />;
+      content = <CreezEquipe user={user} equipeUpdate={equipeUpdate}  />;
       break;
     default:
       content = <h2>Page non trouvée</h2>;

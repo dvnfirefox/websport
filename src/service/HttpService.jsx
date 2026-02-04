@@ -49,8 +49,16 @@ export default class ApiService {
     }
 
     static async postInscription(nom, password) {
-        const admin = "none";
-        return await this.post("/utilisateur/creez", {nom, password, admin});
+        return await this.post("/utilisateur/creez", {nom, password});
+    }
+    static async postJoueurs(equipe){
+        return await this.post("/joueur/list", {id: equipe});
+    }
+    static async postCreezJoueur( nom, numero, equipe ) {
+        return await this.post("/joueur/creez", {nom, numero, equipeid: equipe});
+    }
+    static async postDeleteJoueur(id, equipeid){
+        return await this.post("/joueur/supprimer", {id, equipeid});
     }
 
 
