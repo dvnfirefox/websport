@@ -4,10 +4,12 @@ import Logging from "./component/logging.jsx";
 import CreezUtilisateur from "./component/CreezUtilisateur.jsx";
 import CreezEquipe from "./component/creezEquipe.jsx";
 import GestionJoueur from "./component/joueur/GestionJoueur.jsx";
+import GestionTournois from "./component/tournois/GestionTournois.jsx";
+import PublicTournois from "./component/tournoisPublic/PublicTournois.jsx"
 
 function App() {
   const [user, setUser] = useState(null);
-  const [navBar, setNavBar] = useState("connection");
+  const [navBar, setNavBar] = useState("tournoispublic");
 
   const navBarClick = (page) => setNavBar(page);
   const onLogout = () => {
@@ -29,7 +31,10 @@ function App() {
       content = <Logging UserUpdate={userUpdate} />;
       break;
     case "tournois":
-      content = <h2>Tournois</h2>;
+      content = <GestionTournois user={user} />;
+      break;
+    case "tournoispublic":
+      content = <PublicTournois/>;
       break;
     case "resultats":
       content = <h2>Résultats</h2>;

@@ -3,13 +3,13 @@ import React from "react";
 const Navbar = ({ user, onNavigate, onLogout }) => {
     const buttonPublic = [
         { label: "Connexion", key: "connection", onClick: onNavigate },
-        { label: "Tournois", key: "tournois", onClick: onNavigate },
+        { label: "Tournois", key: "tournoispublic", onClick: onNavigate },
         { label: "Résultats", key: "resultats", onClick: onNavigate },
         { label: "Inscriptions", key: "inscriptions", onClick: onNavigate },
     ];
 
     const buttonNoEquipe = [
-        { label: "Tournois", key: "tournois", onClick: onNavigate },
+        { label: "Tournois", key: "tournoispublic", onClick: onNavigate },
         { label: "Résultats", key: "resultats", onClick: onNavigate },
         { label: "Créer équipe", key: "creezEquipe", onClick: onNavigate },
         { label: "Déconnexion", key: "logout", onClick: onLogout },

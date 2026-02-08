@@ -22,9 +22,13 @@ export default class ApiService {
     }
 
     // Generic GET request
-    static async get(path) {
+    static async get(path, params = {}) {
         try {
-            const res = await fetch(BASE_URL + path, {
+            // Build query string from params object
+            const queryString = new URLSearchParams(params).toString();
+            const url = BASE_URL + path + (queryString ? `?${queryString}` : '');
+
+            const res = await fetch(url, {
                 method: "GET",
                 credentials: "include",
             });
@@ -36,7 +40,6 @@ export default class ApiService {
         }
     }
 
-    // Example: login method
     static async login(nom, password) {
         return await this.post("/session/connection", { nom, password });
     }
@@ -60,6 +63,30 @@ export default class ApiService {
     static async postDeleteJoueur(id, equipeid){
         return await this.post("/joueur/supprimer", {id, equipeid});
     }
+    static async getTournois(date){
+        return await this.get("/tournois/recherche", {
+            date: date,
+            type: "debut.after"
+        });
+    }
+    static async removeEquipeTournois(equipe, tournois){
+        return await this.post("/tournois/removeequipe", {equipe, tournois});
+    }
+    static async addEquipeTournois(equipe, tournois){
+        return await this.post("/tournois/addequipe", {equipe, tournois});
+    }
 
-
+    // Add this new method for date-based tournament search
+    static async rechercheTournois(date, type){
+        return await this.get("/tournois/recherche", {
+            date: date,
+            type: type
+        });
+    }
+    static async getTournoisLive(){
+        return await this.get("/tournois/live");
+    }
+    static async getTournoisFuture(){
+        return await this.get("/tournois/future");
+    }
 }
