@@ -11,6 +11,7 @@ const CreezEquipe = ({ user, equipeUpdate }) => {
     const categories = ["Moustique", "Atome", "Peewee", "Bantam", "Midget", "Junior"];
     const [federations, setFederations] = useState([]);
 
+    // Méthode utilisée à l'ouverture de la page pour charger les fédérations disponibles
     useEffect(() => {
         const loadFederations = async () => {
             try {
@@ -24,11 +25,13 @@ const CreezEquipe = ({ user, equipeUpdate }) => {
         loadFederations();
     }, []);
 
+    // Méthode pour gérer la soumission du formulaire de création d'équipe
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError("");
         setLoading(true);
 
+        // Validation des champs obligatoires
         if (!nom || !federation || !categorie) {
             setError("Veuillez remplir tous les champs");
             setLoading(false);
@@ -36,6 +39,7 @@ const CreezEquipe = ({ user, equipeUpdate }) => {
         }
 
         try {
+            // Appel au backend pour créer l'équipe
             const response = await ApiService.postCreezEquipe(
                 nom,
                 federation,
@@ -43,16 +47,19 @@ const CreezEquipe = ({ user, equipeUpdate }) => {
                 user.nom
             );
 
+            // Met à jour les informations de l'utilisateur si la création a réussi
             if (response.resultat) {
                 const updatedUser = {
                     ...user,
                     equipe: response.equipe ?? 0,
-                    equipeNom: response.equipeNom ?? ""
+                    equipeNom: response.equipeNom ?? "",
+                    equipeFederation: response.equipeFederation ?? "",
+                    equipeCategorie: response.equipeCategorie ?? "",
                 };
 
-                equipeUpdate(updatedUser); // update App state
+                equipeUpdate(updatedUser); // Met à jour l'état de l'application
             } else {
-                setError("Échec de la création de l’équipe");
+                setError("Échec de la création de l'équipe");
             }
         } catch (err) {
             console.error(err);
@@ -74,7 +81,7 @@ const CreezEquipe = ({ user, equipeUpdate }) => {
         >
             <input
                 type="text"
-                placeholder="Nom de l’équipe"
+                placeholder="Nom de l'équipe"
                 value={nom}
                 onChange={(e) => setNom(e.target.value)}
             />
@@ -104,7 +111,7 @@ const CreezEquipe = ({ user, equipeUpdate }) => {
             </select>
 
             <button type="submit" disabled={loading}>
-                {loading ? "Création..." : "Créer l’équipe"}
+                {loading ? "Création..." : "Créer l'équipe"}
             </button>
 
             {error && <p style={{ color: "red" }}>{error}</p>}

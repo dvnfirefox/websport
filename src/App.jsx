@@ -6,6 +6,8 @@ import CreezEquipe from "./component/creezEquipe.jsx";
 import GestionJoueur from "./component/joueur/GestionJoueur.jsx";
 import GestionTournois from "./component/tournois/GestionTournois.jsx";
 import PublicTournois from "./component/tournoisPublic/PublicTournois.jsx"
+import parties from "./component/Partie/Parties.jsx"
+import Parties from "./component/Partie/Parties.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,7 +39,7 @@ function App() {
       content = <PublicTournois/>;
       break;
     case "resultats":
-      content = <h2>Résultats</h2>;
+      content = <Parties user={user} />;
       break;
     case "inscriptions":
       content = <CreezUtilisateur/>;

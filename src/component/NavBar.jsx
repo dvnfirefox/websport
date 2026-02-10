@@ -20,7 +20,6 @@ const Navbar = ({ user, onNavigate, onLogout }) => {
         { label: "Résultats", key: "resultats", onClick: onNavigate },
         { label: "Joueur", key: "joueur", onClick: onNavigate },
         { label: "Historique", key: "historique", onClick: onNavigate },
-        { label: "Classement", key: "classement", onClick: onNavigate },
         { label: "Déconnexion", key: "logout", onClick: onLogout },
     ];
 
@@ -35,18 +34,21 @@ const Navbar = ({ user, onNavigate, onLogout }) => {
     }
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", gap: "12px", width: "100%" }}>
-            {nav.map((btn) => (
-                <button key={btn.key} onClick={() => btn.onClick(btn.key)}>
-                    {btn.label}
-                </button>
-            ))}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", width: "100%", padding: "12px" }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: "12px", flex: 1 }}>
+                {nav.map((btn) => (
+                    <button key={btn.key} onClick={() => btn.onClick(btn.key)}>
+                        {btn.label}
+                    </button>
+                ))}
+            </div>
 
             {user && (
-                <span style={{ marginLeft: "20px" }}>
-                    Bienvenue {user.nom}
-                    {user.equipe && ` (Équipe: ${user.equipeNom})`}
-                </span>
+                <div style={{ textAlign: "right", lineHeight: "1.5", marginRight: "20px", whiteSpace: "nowrap" }}>
+                    <div>Bienvenue {user.nom}</div>
+                    {user.equipe && <div>Équipe: {user.equipeNom}</div>}
+                    {user.equipe && user.equipeFederation && <div>Fédération: {user.equipeFederation}</div>}
+                </div>
             )}
         </div>
     );

@@ -3,10 +3,7 @@ import ListJoueur from "./ListJoueur.jsx";
 import ApiService from "../../service/HttpService.jsx";
 
 const GestionJoueur = ({ user }) => {
-    const [joueurs, setJoueurs] = useState([
-        { id: 1, nom: "Jean Dupont", numero: 10 },
-        { id: 2, nom: "Marc Tremblay", numero: 7 },
-    ]);
+    const [joueurs, setJoueurs] = useState([]);
 
     const [nom, setNom] = useState("");
     const [numero, setNumero] = useState("");

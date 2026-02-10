@@ -89,4 +89,10 @@ export default class ApiService {
     static async getTournoisFuture(){
         return await this.get("/tournois/future");
     }
+    static async getParties(date, type, equipe) {
+        return await this.get("/partie/recherchedate", {date, type, equipe});
+    }
+    static async getClassement(tournoiId){
+        return await this.get("/tournois/classement", {tournoiId: tournoiId});
+    }
 }

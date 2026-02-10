@@ -8,17 +8,20 @@ const CreezUtilisateur = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // Méthode pour gérer la soumission du formulaire d'inscription
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError("");
         setLoading(true);
 
+        // Validation des champs obligatoires
         if (!nom || !password || !password2) {
             setError("Remplir tous les champs");
             setLoading(false);
             return;
         }
 
+        // Vérification que les deux mots de passe correspondent
         if (password !== password2) {
             setError("Les mots de passe ne sont pas identiques");
             setLoading(false);
@@ -26,10 +29,11 @@ const CreezUtilisateur = () => {
         }
 
         try {
+            // Appel au backend pour créer le nouvel utilisateur
             const response = await ApiService.postInscription(nom, password);
 
             if (response.status) {
-                setError("CreezUtilisateur réussie");
+                setError("Inscription réussie");
             } else {
                 setError("Échec de la création");
             }
